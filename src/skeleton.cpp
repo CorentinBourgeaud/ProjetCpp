@@ -26,7 +26,6 @@
 
 // For compilers that support precompilation, includes "wx/wx.h".
 #include "wx/wxprec.h"
-
 #ifndef WX_PRECOMP
     #include "wx/wx.h"
 #endif
@@ -45,7 +44,6 @@
 #define WIDGET_Y0			30
 #define WIDGET_Y_STEP		50
 #define APP_NAME "M1102 Skeleton 1.0"
-
 //------------------------------------------------------------------------
 // Some enums for widgets
 //------------------------------------------------------------------------
@@ -56,6 +54,7 @@ enum
 	ID_LOAD,
 	ID_SAVE,
 	ID_BUTTON1,
+	ID_BUTTON2,
 	ID_SLIDER1,
 	ID_CHECKBOX1
 };
@@ -103,6 +102,7 @@ private:
 	void OnSlider(wxScrollEvent &event) ;
 	void OnCheckBox(wxCommandEvent &event) ;
 	wxButton* m_button ;
+	wxButton* m_buttonCarre;
 	wxSlider* m_slider ;
 	wxCheckBox* m_checkBox ;
 };
@@ -147,17 +147,22 @@ MyControlPanel::MyControlPanel(wxWindow *parent) : wxPanel(parent)
 	y = WIDGET_Y0 ;
 	m_button = new wxButton(this, ID_BUTTON1, wxT("Click me"), wxPoint(10, y)) ;
 	Bind(wxEVT_BUTTON, &MyControlPanel::OnButton, this, ID_BUTTON1) ;
-	
+
+
+	y += 70;
+	m_buttonCarre = new wxButton(this, ID_BUTTON2, wxT("Carré"), wxPoint(10, y));
+	Bind(wxEVT_BUTTON, &MyControlPanel::OnButton, this, ID_BUTTON2);
+
 	y+= WIDGET_Y_STEP ;
 	wxStaticText* text1 = new wxStaticText(this, wxID_ANY, wxT("Radius"), wxPoint(10, y)) ;
-	
-	y+= 15 ;
+
+	y+= 25 ;
 	m_slider = new wxSlider(this, ID_SLIDER1, 10, 2, 100, wxPoint(10, y), wxSize(100,20)) ;
-	Bind(wxEVT_SCROLL_THUMBTRACK, &MyControlPanel::OnSlider, this, ID_SLIDER1) ;	
-	
+	Bind(wxEVT_SCROLL_THUMBTRACK, &MyControlPanel::OnSlider, this, ID_SLIDER1) ;
+
 	y+= WIDGET_Y_STEP ;
 	m_checkBox = new wxCheckBox(this, ID_CHECKBOX1, "Show (x,y)", wxPoint(10, y), wxSize(100,20)) ;
-	Bind(wxEVT_CHECKBOX, &MyControlPanel::OnCheckBox, this, ID_CHECKBOX1) ;	
+	Bind(wxEVT_CHECKBOX, &MyControlPanel::OnCheckBox, this, ID_CHECKBOX1) ;
 }
 
 //------------------------------------------------------------------------
@@ -242,12 +247,12 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 	bool check = frame->GetControlPanel()->GetCheckBoxValue() ;
 
 	// then paint
-	wxPaintDC dc(this);	
-		
+	wxPaintDC dc(this);
+
 	dc.DrawLine(m_mousePoint, m_onePoint) ;
 	dc.DrawRectangle(wxPoint(m_onePoint.x-radius/2, m_onePoint.y-radius/2), wxSize(radius,radius)) ;
 	dc.DrawCircle(wxPoint(m_mousePoint), radius/2) ;
-	
+
 	if (check)
 	{
 		wxString coordinates ;
@@ -260,7 +265,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 void MyDrawingPanel::OpenFile(wxString fileName)
 //------------------------------------------------------------------------
 {
-	// just to open (and close) any file 
+	// just to open (and close) any file
 	FILE* f = fopen(fileName, "r") ;
 	if (f)
 	{
@@ -336,7 +341,7 @@ void MyFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 void MyFrame::OnClose(wxCloseEvent& event)
 //------------------------------------------------------------------------
 {
-	delete m_controlPanel ;
+	delete m_controlPanel ;         
 	delete m_drawingPanel ;
 	event.Skip() ;
 }
@@ -373,7 +378,7 @@ void MyFrame::OnSize(wxSizeEvent &event)
 // Called when you resize the frame
 {
 	int w, h ;
-	GetSize(&w,&h) ;	
+	GetSize(&w,&h) ;
 	m_controlPanel->SetSize(wxRect(wxPoint(0,0), wxPoint(WIDGET_PANEL_WIDTH, h))) ;
 	m_drawingPanel->SetSize(wxRect(wxPoint(WIDGET_PANEL_WIDTH,0), wxPoint(w, h))) ;
 }
