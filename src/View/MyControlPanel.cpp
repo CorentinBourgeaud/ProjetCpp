@@ -52,7 +52,7 @@ MyControlPanel::MyControlPanel(wxWindow *parent) : wxPanel(parent)
 	Bind(wxEVT_CHECKBOX, &MyControlPanel::OnCheckBox, this, ID_CHECKBOX1) ;
 
 }
-
+//A ENLEVER AVANT ENVOI DU DOSSIER AU PROF!!!
 //------------------------------------------------------------------------
 void MyControlPanel::GetRadioB(wxCommandEvent &event)
 //------------------------------------------------------------------------
