@@ -91,18 +91,15 @@ int Rectangle::GetHeight() const
     return m_h;
 }
 
-/*
+
 //-------------------------------------------
 void Rectangle::Display() const
 //-------------------------------------------
 {
     // On affiche le nom
-    std::cout << "Rectangle " << GetLabel() << "= (";
-    m_corner.Display();
-    cout << " w=" << m_w << " h=" << m_h << ")"
-    << " P=" << Perimeter() << " S=" << Surface() << endl;
-}*/
-
+    cout << "Rectangle (" << m_corner.GetX() << "," << m_corner.GetY() << ") w=" << m_w << " h=" << m_h << ")" << endl;
+}
+/*
 //-------------------------------------------
 void Rectangle::Move(int dX, int dY)
 //-------------------------------------------

@@ -16,6 +16,7 @@ public:
     // Operator d'affectation
     Forme& operator=(const Forme& other);
 
+    virtual void Display() const = 0 ;
     /*virtual float Surface() const { return 0.0f; }
     virtual float Perimeter() const { return 0.0f; }*/
 
