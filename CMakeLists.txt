@@ -16,7 +16,12 @@ add_executable(
                 src/View/MyApp.cpp
                 src/View/MyFrame.cpp
                 src/View/MyControlPanel.cpp
-                src/View/MyDrawingPanel.cpp)
+                src/View/MyDrawingPanel.cpp
+                src/Modele/Point.cpp
+                src/Modele/Forme.cpp
+                src/Modele/Cercle.cpp
+                src/Modele/Rectangle.cpp
+                )
 target_link_libraries(skeleton ${wxWidgets_LIBRARIES})
 
 #include_directories()
