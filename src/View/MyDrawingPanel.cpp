@@ -62,9 +62,9 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 // You have to call OnPaint with Refresh() when you need to update the panel content
 {
 	// read the control values
-	MyFrame* frame =  (MyFrame*)GetParent() ;
-	int radius = frame->GetControlPanel()->GetSliderValue() ;
-	bool check = frame->GetControlPanel()->GetCheckBoxValue() ;
+	//MyFrame* frame =  (MyFrame*)GetParent() ;
+	//int radius = frame->GetControlPanel()->GetSliderValue() ;
+	//bool check = frame->GetControlPanel()->GetCheckBoxValue() ;
 
 	
 	////////////////////////////////////

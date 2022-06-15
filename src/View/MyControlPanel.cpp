@@ -29,16 +29,16 @@ MyControlPanel::MyControlPanel(wxWindow *parent) : wxPanel(parent)
 	Bind(wxEVT_BUTTON, &MyControlPanel::OnButton, this, ID_BUTTON1) ;
 
 	y += 70;
-	m_buttonTrait = new wxButton(this, ID_BUTTON2, wxT("Trait"), wxPoint(10, y));
-	Bind(wxEVT_BUTTON, &MyControlPanel::OnButton, this, ID_BUTTON2);
+	m_radioTrait = new wxRadioButton(this, ID_RADIOTRAIT, wxT("Trait"), wxPoint(10, y));
+	Bind(wxEVT_RADIOBUTTON, &MyControlPanel::OnRadioB, this, ID_RADIOTRAIT);
 
-	y += 35;
-	m_buttonRectangle = new wxButton(this, ID_BUTTON3, wxT("Rectangle"), wxPoint(10, y));
-	Bind(wxEVT_BUTTON, &MyControlPanel::OnButton, this, ID_BUTTON3);
+	y += 30;
+	m_radioRectangle = new wxRadioButton(this, ID_RADIORECT, wxT("Rectangle"), wxPoint(10, y));
+	Bind(wxEVT_RADIOBUTTON, &MyControlPanel::OnRadioB, this, ID_RADIORECT);
 
-	y += 35;
-	m_buttonCercle = new wxButton(this, ID_BUTTON4, wxT("Cercle"), wxPoint(10, y));
-	Bind(wxEVT_BUTTON, &MyControlPanel::OnButton, this, ID_BUTTON4);
+	y += 30;
+	m_radioCercle = new wxRadioButton(this, ID_RADIOCERCL, wxT("Cercle"), wxPoint(10, y));
+	Bind(wxEVT_RADIOBUTTON, &MyControlPanel::OnRadioB, this, ID_RADIOCERCL);
 
 	y+= WIDGET_Y_STEP ;
 	wxStaticText* text1 = new wxStaticText(this, wxID_ANY, wxT("Radius"), wxPoint(10, y)) ;
@@ -52,8 +52,59 @@ MyControlPanel::MyControlPanel(wxWindow *parent) : wxPanel(parent)
 	Bind(wxEVT_CHECKBOX, &MyControlPanel::OnCheckBox, this, ID_CHECKBOX1) ;
 
 }
+/*
+//------------------------------------------------------------------------
+void MyControlPanel::OnTrait(wxCommandEvent &event)
+//------------------------------------------------------------------------
+{
+//	char* s = GetCString() ;
+//	wxMessageBox(wxString::FromAscii(s)) ; // call a C function located in the sample.cp module
+//	free(s) ;
+	wxMessageBox(wxT("méthode pour les traits")) ;
+}
 
 //------------------------------------------------------------------------
+void MyControlPanel::OnRectangle(wxCommandEvent &event)
+//------------------------------------------------------------------------
+{
+//	char* s = GetCString() ;
+//	wxMessageBox(wxString::FromAscii(s)) ; // call a C function located in the sample.cp module
+//	free(s) ;
+	wxMessageBox(wxT("méthode pour les rectangles")) ;
+}
+
+void MyControlPanel::OnCercle(wxCommandEvent &event)
+//------------------------------------------------------------------------
+{
+//	char* s = GetCString() ;
+//	wxMessageBox(wxString::FromAscii(s)) ; // call a C function located in the sample.cp module
+//	free(s) ;
+	wxMessageBox(wxT("méthode pour les cercles")) ;
+}
+*/
+void MyControlPanel::OnRadioB(wxCommandEvent &event)
+//------------------------------------------------------------------------
+{
+	
+	
+	if(m_radioTrait=>GetValue())
+	{
+		wxMessageBox(wxT("méthode pour les traits")) ;
+	}
+	else if(m_radioRectangle=>GetValue())
+	{
+		wxMessageBox(wxT("méthode pour les rectangles")) ;
+	}
+	else
+	{
+		wxMessageBox(wxT("méthode pour les cercles")) ;
+	}
+
+
+
+}
+
+
 void MyControlPanel::OnButton(wxCommandEvent &event)
 //------------------------------------------------------------------------
 {
