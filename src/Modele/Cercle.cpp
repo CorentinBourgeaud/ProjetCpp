@@ -25,6 +25,7 @@ Cercle::Cercle(Point centre, int radius, string label)
 }
 */
 
+
 // constructeur par d�faut, le constructeur par d�faut de
 // Forme est automatiquement appel�
 Cercle::Cercle()
@@ -34,8 +35,9 @@ Cercle::Cercle()
 Cercle::Cercle(const Cercle &other) : m_center(other.m_center), m_radius(other.m_radius)
 {}
 
+/*
 Cercle::~Cercle()
-{}
+{}*/
 
 Cercle &Cercle::operator=(const Cercle &other)
 {
