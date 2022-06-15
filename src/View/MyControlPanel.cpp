@@ -28,10 +28,17 @@ MyControlPanel::MyControlPanel(wxWindow *parent) : wxPanel(parent)
 	m_button = new wxButton(this, ID_BUTTON1, wxT("Click me"), wxPoint(10, y)) ;
 	Bind(wxEVT_BUTTON, &MyControlPanel::OnButton, this, ID_BUTTON1) ;
 
-
 	y += 70;
-	m_buttonCarre = new wxButton(this, ID_BUTTON2, wxT("Carré"), wxPoint(10, y));
+	m_buttonTrait = new wxButton(this, ID_BUTTON2, wxT("Trait"), wxPoint(10, y));
 	Bind(wxEVT_BUTTON, &MyControlPanel::OnButton, this, ID_BUTTON2);
+
+	y += 35;
+	m_buttonRectangle = new wxButton(this, ID_BUTTON3, wxT("Rectangle"), wxPoint(10, y));
+	Bind(wxEVT_BUTTON, &MyControlPanel::OnButton, this, ID_BUTTON3);
+
+	y += 35;
+	m_buttonCercle = new wxButton(this, ID_BUTTON4, wxT("Cercle"), wxPoint(10, y));
+	Bind(wxEVT_BUTTON, &MyControlPanel::OnButton, this, ID_BUTTON4);
 
 	y+= WIDGET_Y_STEP ;
 	wxStaticText* text1 = new wxStaticText(this, wxID_ANY, wxT("Radius"), wxPoint(10, y)) ;
