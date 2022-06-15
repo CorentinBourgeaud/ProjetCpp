@@ -33,3 +33,11 @@ void Dessin::AddForme(Forme* newforme)
 {
     dessin.push_back(newforme);
 }
+
+void Dessin::Display()
+{
+    for(auto it = dessin.begin(); it != dessin.end(); it++)
+    {
+        
+    }
+}

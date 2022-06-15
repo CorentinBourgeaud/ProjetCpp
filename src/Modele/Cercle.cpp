@@ -58,12 +58,9 @@ float Cercle::Perimeter() const
 {
     return m_radius * (float)M_PI * 2.f;
 }
-
+*/
 // virtual void Cercle::Display() const override
 void Cercle::Display() const
 {
-    cout << "Cercle " << *m_label << "=(" << m_center.GetX() << "," <<
-        m_center.GetY() << ") radius=" << m_radius
-        << " P=" << Perimeter() << " S=" << Surface()
-        << endl;
-}*/
+    cout << "Cercle = (" << m_center.GetX() << "," << m_center.GetY() << ") radius=" << m_radius << endl;
+}

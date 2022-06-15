@@ -17,6 +17,7 @@ public:
 
     list<Forme*>& GetList();
     void AddForme(Forme* newforme);
+    void Display();
 
 private:
     list<Forme*> dessin;

@@ -21,8 +21,8 @@ public:
 
     // M�thodes virtuelles pour surcharger celles de la classe M�re
     /*virtual float Surface() const override;
-    virtual float Perimeter() const override;
-    virtual void Display() const override;*/
+    virtual float Perimeter() const override;*/
+    virtual void Display() const;
 
 private:    // Could be protected
     Point m_center;
