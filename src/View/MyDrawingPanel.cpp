@@ -6,7 +6,9 @@ using namespace std ;
 #include "ID.hpp"
 #include "MyDrawingPanel.hpp"
 #include "MyFrame.hpp"
+#include <math.h>
 
+int clickLeft = 0;
 //************************************************************************
 //************************************************************************
 // MyDrawingPanel class (where drawings are displayed)
@@ -37,6 +39,7 @@ void MyDrawingPanel::OnMouseMove(wxMouseEvent &event)
 {
 	m_mousePoint.x = event.m_x ;
 	m_mousePoint.y = event.m_y ;
+	
 	Refresh() ;	// send an event that calls the OnPaint method
 }
 
@@ -47,6 +50,7 @@ void MyDrawingPanel::OnMouseLeftDown(wxMouseEvent &event)
 {
 	m_onePoint.x = event.m_x ;
 	m_onePoint.y = event.m_y ;
+	clickLeft = clickLeft +1;
 	Refresh() ; // send an event that calls the OnPaint method
 }
 
@@ -62,19 +66,81 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 	int radius = frame->GetControlPanel()->GetSliderValue() ;
 	bool check = frame->GetControlPanel()->GetCheckBoxValue() ;
 
-	// then paint
+	
+	////////////////////////////////////
+	//METHODE POUR DESSINER UN CERCLE
+	static int x1, y1;
 	wxPaintDC dc(this);
+	
+	if(clickLeft == 1)
+	{
+		x1 = m_onePoint.x;
+		y1 = m_onePoint.y;
+	}
+	if(clickLeft == 2 )
+	{
+		int xF = m_onePoint.x;
+		int yF = m_onePoint.y;
+		int rayon = sqrt((xF-x1)*(xF-x1)+(yF-y1)*(yF-y1));
+		dc.DrawCircle(x1, y1, rayon);
+		clickLeft = 0;
+	}
 
+	/*
+	////////////////////////////////////	
+	//METHODE POUR DESSINER UN TRAIT
+	static int x1, y1;
+	wxPaintDC dc(this);
+	
+	if(clickLeft == 1)
+	{
+		x1 = m_onePoint.x;
+		y1 = m_onePoint.y;
+	}
+	if(clickLeft == 2 )
+	{
+		dc.DrawLine(x1, y1, m_onePoint.x,m_onePoint.y);
+		clickLeft = 0;
+	}
+	*/
+	/*
+	////////////////////////////////////	
+	//METHODE POUR DESSINER UN RECTANGLE
+	static int x1, y1;
+	wxPaintDC dc(this);
+	
+	if(clickLeft == 1)
+	{
+		x1 = m_onePoint.x;
+		y1 = m_onePoint.y;
+	}
+	if(clickLeft == 2 )
+	{
+		int largeur = 0;
+		int longueur = 0;
+		int xF = m_onePoint.x;
+		int yF = m_onePoint.y;
+		largeur = xF - x1;
+		longueur = yF-y1;
+		dc.DrawRectangle(x1, y1, largeur, longueur);
+		clickLeft = 0;
+	}
+	*/
+
+
+
+	/*
 	dc.DrawLine(m_mousePoint, m_onePoint) ;
 	dc.DrawRectangle(wxPoint(m_onePoint.x-radius/2, m_onePoint.y-radius/2), wxSize(radius,radius)) ;
 	dc.DrawCircle(wxPoint(m_mousePoint), radius/2) ;
-
+	*/
 	if (check)
 	{
 		wxString coordinates ;
 		coordinates.sprintf(wxT("(%d,%d)"), m_mousePoint.x, m_mousePoint.y) ;
 		dc.DrawText(coordinates, wxPoint(m_mousePoint.x, m_mousePoint.y+20)) ;
 	}
+	
 }
 
 //------------------------------------------------------------------------

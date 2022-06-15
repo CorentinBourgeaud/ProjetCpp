@@ -18,3 +18,6 @@ private:
 };
 
 #endif
+
+
+//methode  à implémenter ajouter / supprimer / donner la liste entière  / sélectionner un objet forme précise 
