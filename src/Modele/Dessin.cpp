@@ -28,3 +28,8 @@ list<Forme*>& Dessin::GetList()
 {
     return dessin;
 }
+
+void Dessin::AddForme(Forme* newforme)
+{
+    dessin.push_back(newforme);
+}

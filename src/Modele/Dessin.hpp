@@ -16,6 +16,7 @@ public:
     ~Dessin();
 
     list<Forme*>& GetList();
+    void AddForme(Forme* newforme);
 
 private:
     list<Forme*> dessin;
