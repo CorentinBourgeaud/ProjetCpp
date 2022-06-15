@@ -62,72 +62,77 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 // You have to call OnPaint with Refresh() when you need to update the panel content
 {
 	// read the control values
-	//MyFrame* frame =  (MyFrame*)GetParent() ;
+	MyFrame* frame =  (MyFrame*)GetParent() ;
 	//int radius = frame->GetControlPanel()->GetSliderValue() ;
-	//bool check = frame->GetControlPanel()->GetCheckBoxValue() ;
 
+	//on verifie l'éat des boutons radio pour adapter la methode draw
+	bool check = frame->GetControlPanel()->GetCheckBoxValue() ;
+	bool radioTrait = frame->GetControlPanel()->GetRadioTrait() ;
+	bool radioRect = frame->GetControlPanel()->GetRadioRect() ;
+	bool radioCercle = frame->GetControlPanel()->GetRadioCercle() ;
 	
-	////////////////////////////////////
-	//METHODE POUR DESSINER UN CERCLE
-	static int x1, y1;
+	//initialisation du wxPaintDC pour dessiner 
 	wxPaintDC dc(this);
-	
-	if(clickLeft == 1)
-	{
-		x1 = m_onePoint.x;
-		y1 = m_onePoint.y;
-	}
-	if(clickLeft == 2 )
-	{
-		int xF = m_onePoint.x;
-		int yF = m_onePoint.y;
-		int rayon = sqrt((xF-x1)*(xF-x1)+(yF-y1)*(yF-y1));
-		dc.DrawCircle(x1, y1, rayon);
-		clickLeft = 0;
-	}
-
-	/*
-	////////////////////////////////////	
-	//METHODE POUR DESSINER UN TRAIT
+	//variable statiques communes à toutes instances objets 
 	static int x1, y1;
-	wxPaintDC dc(this);
+	if(radioTrait)
+	{
+		////////////////////////////////////	
+		//METHODE POUR DESSINER UN TRAIT
+		
+		if(clickLeft == 1)
+		{
+			x1 = m_onePoint.x;
+			y1 = m_onePoint.y;
+		}
+		if(clickLeft == 2 )
+		{
+			dc.DrawLine(x1, y1, m_onePoint.x,m_onePoint.y);
+			clickLeft = 0;
+		}
+	}
+	else if(radioRect)
+	{
+		////////////////////////////////////	
+		//METHODE POUR DESSINER UN RECTANGLE
 	
-	if(clickLeft == 1)
-	{
-		x1 = m_onePoint.x;
-		y1 = m_onePoint.y;
+		if(clickLeft == 1)
+		{
+			x1 = m_onePoint.x;
+			y1 = m_onePoint.y;
+		}
+		if(clickLeft == 2 )
+		{
+			int largeur = 0;
+			int longueur = 0;
+			int xF = m_onePoint.x;
+			int yF = m_onePoint.y;
+			largeur = xF - x1;
+			longueur = yF-y1;
+			dc.DrawRectangle(x1, y1, largeur, longueur);
+			clickLeft = 0;
+		}
 	}
-	if(clickLeft == 2 )
+	else
 	{
-		dc.DrawLine(x1, y1, m_onePoint.x,m_onePoint.y);
-		clickLeft = 0;
-	}
-	*/
-	/*
-	////////////////////////////////////	
-	//METHODE POUR DESSINER UN RECTANGLE
-	static int x1, y1;
-	wxPaintDC dc(this);
+		////////////////////////////////////
+		//METHODE POUR DESSINER UN CERCLE
 	
-	if(clickLeft == 1)
-	{
-		x1 = m_onePoint.x;
-		y1 = m_onePoint.y;
-	}
-	if(clickLeft == 2 )
-	{
-		int largeur = 0;
-		int longueur = 0;
-		int xF = m_onePoint.x;
-		int yF = m_onePoint.y;
-		largeur = xF - x1;
-		longueur = yF-y1;
-		dc.DrawRectangle(x1, y1, largeur, longueur);
-		clickLeft = 0;
-	}
-	*/
+		if(clickLeft == 1)
+		{
+			x1 = m_onePoint.x;
+			y1 = m_onePoint.y;
+		}
+		if(clickLeft == 2 )
+		{
+			int xF = m_onePoint.x;
+			int yF = m_onePoint.y;
+			int rayon = sqrt((xF-x1)*(xF-x1)+(yF-y1)*(yF-y1));
+			dc.DrawCircle(x1, y1, rayon);
+			clickLeft = 0;
+		}
 
-
+	}
 
 	/*
 	dc.DrawLine(m_mousePoint, m_onePoint) ;
