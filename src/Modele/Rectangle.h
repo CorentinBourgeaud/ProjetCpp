@@ -12,6 +12,7 @@ class Rectangle : public Forme
 {
 public:                                     // interface publique de la classe
     // Ici on rajoute une label
+    Rectangle();
     Rectangle(int x, int y, int w, int h);  // constructeur
     Rectangle(const Point& p, int w, int h);// constructeur
     ~Rectangle();                           // destructeur
