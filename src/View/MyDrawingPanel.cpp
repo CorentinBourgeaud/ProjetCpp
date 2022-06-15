@@ -9,6 +9,7 @@ using namespace std ;
 #include <math.h>
 
 int clickLeft = 0;
+int clickMouve = 0;
 //************************************************************************
 //************************************************************************
 // MyDrawingPanel class (where drawings are displayed)
@@ -39,7 +40,7 @@ void MyDrawingPanel::OnMouseMove(wxMouseEvent &event)
 {
 	m_mousePoint.x = event.m_x ;
 	m_mousePoint.y = event.m_y ;
-	
+	clickMouve = clickMouve + 1;
 	Refresh() ;	// send an event that calls the OnPaint method
 }
 
@@ -74,7 +75,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 	//initialisation du wxPaintDC pour dessiner 
 	wxPaintDC dc(this);
 	//variable statiques communes à toutes instances objets 
-	static int x1, y1;
+	static int x1, y1, x2, y2;
 	if(radioTrait)
 	{
 		////////////////////////////////////	
@@ -85,10 +86,17 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			x1 = m_onePoint.x;
 			y1 = m_onePoint.y;
 		}
+		if (clickLeft == 1 && clickMouve != 0)
+		{
+			dc.DrawLine(x1, y1, m_mousePoint.x,m_mousePoint.y);
+		}
 		if(clickLeft == 2 )
 		{
-			dc.DrawLine(x1, y1, m_onePoint.x,m_onePoint.y);
+			x2 = m_onePoint.x;
+			y2 = m_onePoint.y;
+			dc.DrawLine(x1, y1, x2, y2);
 			clickLeft = 0;
+			clickMouve = 0;
 		}
 	}
 	else if(radioRect)
@@ -101,16 +109,29 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			x1 = m_onePoint.x;
 			y1 = m_onePoint.y;
 		}
+		if (clickLeft == 1 && clickMouve != 0)
+		{
+			int largeur;
+			int longueur;
+			int xF = m_mousePoint.x;
+			int yF = m_mousePoint.y;
+			largeur = xF - x1;
+			printf("%d", largeur);
+			longueur = yF-y1;
+			dc.DrawRectangle(x1, y1, largeur, longueur);
+		}
+		
 		if(clickLeft == 2 )
 		{
 			int largeur = 0;
 			int longueur = 0;
-			int xF = m_onePoint.x;
-			int yF = m_onePoint.y;
-			largeur = xF - x1;
-			longueur = yF-y1;
+			int x2 = m_onePoint.x;
+			int y2 = m_onePoint.y;
+			largeur = x2 - x1;
+			longueur = y2-y1;
 			dc.DrawRectangle(x1, y1, largeur, longueur);
 			clickLeft = 0;
+			clickMouve = 0;
 		}
 	}
 	else
@@ -122,6 +143,15 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 		{
 			x1 = m_onePoint.x;
 			y1 = m_onePoint.y;
+		}
+		if (clickLeft == 1 && clickMouve != 0)
+		{
+			
+			int xF = m_mousePoint.x;
+			int yF = m_mousePoint.y;
+			int rayon = sqrt((xF-x1)*(xF-x1)+(yF-y1)*(yF-y1));
+			dc.DrawCircle(x1, y1, rayon);
+			
 		}
 		if(clickLeft == 2 )
 		{
