@@ -41,7 +41,7 @@ void Line::Display() const
     cout << "Line = (" << m_p1.GetX() << "," << m_p1.GetY() << ") , (" << m_p2.GetX() << "," << m_p2.GetY() << ")" << endl;
 }
 
-void Line::Draw() const
+void Line::Draw(wxClientDC* dc) const
 {
 
 }
