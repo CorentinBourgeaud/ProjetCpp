@@ -21,6 +21,7 @@ add_executable(
                 src/Modele/Forme.cpp
                 src/Modele/Cercle.cpp
                 src/Modele/Rectangle.cpp
+                src/Modele/Line.cpp
                 )
 target_link_libraries(skeleton ${wxWidgets_LIBRARIES})
 
