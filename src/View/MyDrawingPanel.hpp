@@ -3,6 +3,9 @@ using namespace std ;
 #define __MyDrawingPanel_h__
 
 #include "include.hpp"
+#include "../Modele/Point.h"
+#include "../Modele/Rectangle.h"
+
 
 //------------------------------------------------------------------------
 class MyDrawingPanel: public wxPanel
@@ -19,6 +22,7 @@ private:
 	void OnPaint(wxPaintEvent &event) ;
 	wxPoint m_mousePoint ;
 	wxPoint m_onePoint ;
+	
 };
 
 #endif
