@@ -149,7 +149,6 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			dc.DrawRectangle(x1, y1, largeur, longueur);
 			
 		}
-		
 		if(clickLeft == 2 )
 		{
 			int largeur = 0;
@@ -193,11 +192,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			int xF = m_onePoint.x;
 			int yF = m_onePoint.y;
 			Point* point = new Point(x1, y1);
-			//point->SetX(x1);
-			//point->SetY(y1);
 			cercle->SetCenter(*point);
-			
-			//cercle.m_center(other.m_center), m_radius(other.m_radius)
 			int rayon = sqrt((xF-x1)*(xF-x1)+(yF-y1)*(yF-y1));
 			cercle->SetRadius(rayon);
 			dc.DrawCircle(x1, y1, rayon);
