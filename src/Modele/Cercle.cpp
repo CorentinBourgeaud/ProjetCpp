@@ -35,9 +35,24 @@ Cercle::Cercle()
 Cercle::Cercle(const Cercle &other) : m_center(other.m_center), m_radius(other.m_radius)
 {}
 
-/*
-Cercle::~Cercle()
-{}*/
+//getters 
+Point Cercle::GetCenter(){
+    return m_center;
+}
+
+int Cercle::GetRadius(){
+    return m_radius;
+}
+//setters 
+void Cercle::SetCenter(Point p)
+{
+    this->m_center = p;
+}
+void Cercle::SetRadius(int radius)
+{
+    this->m_radius = radius;
+}
+
 
 Cercle &Cercle::operator=(const Cercle &other)
 {
@@ -46,6 +61,9 @@ Cercle &Cercle::operator=(const Cercle &other)
     m_radius = other.m_radius;
     return *this;
 }
+
+
+
 /*
 // Calcul de Surface en utilisant M_PI de #include <math.h>
 float Cercle::Surface() const
