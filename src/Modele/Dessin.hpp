@@ -1,4 +1,3 @@
-using namespace std ;
 #ifndef __Dessin_h__
 #define __Dessin_h__
 
@@ -16,13 +15,13 @@ public:
     Dessin(const Dessin& other);
     ~Dessin() = default;
 
-    list<Forme*>& GetList();
+    std::list<Forme*>& GetList();
     void AddForme(Forme* newforme);
     void Display();
     void Draw(wxPaintDC* dc);
 
 private:
-    list<Forme*> dessin;
+    std::list<Forme*> dessin;
 };
 
 #endif

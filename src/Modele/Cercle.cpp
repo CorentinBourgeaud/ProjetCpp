@@ -31,6 +31,9 @@ Cercle::Cercle(Point centre, int radius, string label)
 Cercle::Cercle()
 {}
 
+Cercle::Cercle(int x1, int y1, int radius) : m_center(x1,y1), m_radius(radius)
+{}
+
 // constructeur de copie
 Cercle::Cercle(const Cercle &other) : m_center(other.m_center), m_radius(other.m_radius)
 {}
@@ -83,7 +86,7 @@ void Cercle::Display() const
     cout << "Cercle = (" << m_center.GetX() << "," << m_center.GetY() << ") radius=" << m_radius << endl;
 }
 
-void Cercle::Draw(wxClientDC* dc) const
+void Cercle::Draw(wxPaintDC* dc) const
 {
     dc->DrawCircle(m_center.GetX(), m_center.GetY(), m_radius);
 }

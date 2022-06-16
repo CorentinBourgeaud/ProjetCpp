@@ -3,8 +3,8 @@ using namespace std ;
 #define __MyDrawingPanel_h__
 
 #include "include.hpp"
-#include "../Modele/Point.h"
-#include "../Modele/Rectangle.h"
+#include "includeform.hpp"
+#include "../Modele/Dessin.hpp"
 
 
 //------------------------------------------------------------------------
@@ -23,6 +23,7 @@ private:
 	wxPoint m_mousePoint ;
 	wxPoint m_onePoint ;
 	
+	Dessin objDessin;
 };
 
 #endif

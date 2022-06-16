@@ -31,7 +31,7 @@ public:
     /*virtual float Surface() const override;
     virtual float Perimeter() const override;*/
     virtual void Display() const;
-    virtual void Draw(wxClientDC* dc) const;
+    virtual void Draw(wxPaintDC* dc) const;
 
 private:
     Point m_p1;
