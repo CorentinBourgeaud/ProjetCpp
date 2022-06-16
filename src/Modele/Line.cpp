@@ -43,5 +43,5 @@ void Line::Display() const
 
 void Line::Draw(wxClientDC* dc) const
 {
-
+    dc->DrawLine(m_p1.GetX(), m_p1.GetY(), m_p2.GetX(), m_p2.GetY());
 }
