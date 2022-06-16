@@ -100,9 +100,9 @@ void Rectangle::Display() const
     cout << "Rectangle (" << m_corner.GetX() << "," << m_corner.GetY() << ") w=" << m_w << " h=" << m_h << ")" << endl;
 }
 
-void Rectangle::Draw() const
+void Rectangle::Draw(wxClientDC* dc) const
 {
-    
+	dc->DrawRectangle(m_corner.GetX(), m_corner.GetY(), m_w, m_h);
 }
 /*
 //-------------------------------------------

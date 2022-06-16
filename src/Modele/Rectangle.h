@@ -33,7 +33,7 @@ public:                                     // interface publique de la classe
 
     
     virtual void Display() const;      // affiche les coordonn�es du rectangle
-    virtual void Draw() const;         //
+    virtual void Draw(wxClientDC* dc) const;         //
 /*
     // On rajoute les autres m�thodes virtuelles
     virtual float Surface() const override;
