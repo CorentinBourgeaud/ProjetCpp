@@ -75,7 +75,8 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 {
 	
 	
-	// read the control values
+	// permet de lire les valeurs dans le controleur 
+	
 	MyFrame* frame =  (MyFrame*)GetParent() ;
 	//int radius = frame->GetControlPanel()->GetSliderValue() ;
 
@@ -85,18 +86,17 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 	bool radioRect = frame->GetControlPanel()->GetRadioRect() ;
 	bool radioCercle = frame->GetControlPanel()->GetRadioCercle() ;
 	
-	//initialisationGetWidth() du wxPaintDC pour dessiner 
+	//initialisation du wxPaintDC pour dessiner 
 	wxPaintDC dc(this);
 	
 	//variable statiques communes à toutes instances objets 
 	static int x1, y1, x2, y2;
 
-	
-	//(const wxPoint &pt, const wxSize &sz)
-	
+	//TEST D'INSTANTACIATION DES FORMES
 	dc.DrawRectangle(m_corner->GetX(), m_corner->GetY(), rectangle->GetWidth(),rectangle->GetHeight());
 	dc.DrawLine(line->GetLineP1().GetX(), line->GetLineP1().GetY(), line->GetLineP2().GetX(), line->GetLineP2().GetY());
 	dc.DrawCircle(cercle->GetCenter().GetX(), cercle->GetCenter().GetY(), cercle->GetRadius());
+
 	if(radioTrait)
 	{
 		////////////////////////////////////	
@@ -118,8 +118,6 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			y2 = m_onePoint.y;
 			line->SetLineP1( x1, y1);
 			line->SetLineP2( x2, y2);
-
-			//dc.DrawLine(x1, y1, x2, y2);
 			dc.DrawLine(x1, y1, x2, y2);
 
 			clickLeft = 0;
@@ -207,12 +205,6 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 	dc.DrawRectangle(wxPoint(m_onePoint.x-radius/2, m_onePoint.y-radius/2), wxSize(radius,radius)) ;
 	dc.DrawCircle(wxPoint(m_mousePoint), radius/2) ;
 	*/
-	if (check)
-	{
-		wxString coordinates ;
-		coordinates.sprintf(wxT("(%d,%d)"), m_mousePoint.x, m_mousePoint.y) ;
-		dc.DrawText(coordinates, wxPoint(m_mousePoint.x, m_mousePoint.y+20)) ;
-	}
 	
 }
 
