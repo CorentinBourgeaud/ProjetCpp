@@ -6,11 +6,6 @@ using namespace std;
 #include "Dessin.hpp"
 #include "Forme.h"
 
-//-------------------------------------------
-Dessin::Dessin()   
-//-------------------------------------------
-{
-}
 
 //-------------------------------------------
 Dessin::Dessin(const Dessin& other)
@@ -18,11 +13,6 @@ Dessin::Dessin(const Dessin& other)
 {
     dessin = other.dessin;
 }
-
-Dessin::~Dessin()
-//-------------------------------------------
-{}
-//-------------------------------------------
 
 list<Forme*>& Dessin::GetList()
 {
@@ -38,6 +28,6 @@ void Dessin::Display()
 {
     for(auto it = dessin.begin(); it != dessin.end(); it++)
     {
-        
+        (*it)->Display();
     }
 }

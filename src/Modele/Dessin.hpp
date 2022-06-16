@@ -13,7 +13,7 @@ class Dessin
 public:
     Dessin() = default;
     Dessin(const Dessin& other);
-    ~Dessin();
+    ~Dessin() = default;
 
     list<Forme*>& GetList();
     void AddForme(Forme* newforme);
