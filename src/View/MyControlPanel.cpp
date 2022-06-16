@@ -62,18 +62,18 @@ void MyControlPanel::GetRadioB(wxCommandEvent &event)
 	if(m_radioTrait->GetValue())
 	{
 		wxMessageBox(wxT("méthode pour les traits")) ;
-		radioValue = 1;
+		
 
 	}
 	else if(m_radioRectangle->GetValue())
 	{
 		wxMessageBox(wxT("méthode pour les rectangles")) ;
-		radioValue = 2;
+		
 	}
 	else
 	{
 		wxMessageBox(wxT("méthode pour les cercles")) ;
-		radioValue = 3;
+		
 	}
 
 	MyFrame* frame = (MyFrame*)GetParent() ;

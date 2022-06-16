@@ -14,6 +14,14 @@ Line::Line(int x1, int y1, int x2, int y2) : m_p1(x1,y1), m_p2(x2,y2)
 Line::Line(Point p1, Point p2) : m_p1(p1), m_p2(p2)
 {}
 
+
+Line::GetX1(){return m_p1.x1;}
+Line::GetY1(){return m_p1.y1;}
+Line::GetX2(){return m_p2.x2;}
+Line::GetY2(){return m_p2.y2;}
+
+Line::Set
+
 Line &Line::operator=(const Line &other)
 {
     if (this == &other) return *this; // handle self assignment
