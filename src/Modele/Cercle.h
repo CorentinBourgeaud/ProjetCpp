@@ -11,6 +11,7 @@ public:
     // Construction par d�faut, par copie, avec param�tres
     Cercle();
     Cercle(const Cercle &other);
+    Cercle(int x1, int y1, int radius);
     Cercle(Point centre, int radius);
 
     // Destructeur virtuel car on peut d�river cette classe
@@ -23,7 +24,7 @@ public:
     /*virtual float Surface() const override;
     virtual float Perimeter() const override;*/
     virtual void Display() const;
-    virtual void Draw(wxClientDC* dc) const;
+    virtual void Draw(wxPaintDC* dc) const;
     //getters 
     Point GetCenter();
     int GetRadius();

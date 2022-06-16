@@ -17,7 +17,7 @@ int MouseMouve = 0;
 
 Point* m_corner = new Point();
 Rectangle* rectangle = new Rectangle();
-Line* line = new Line();
+//Line* line = new Line();
 Cercle* cercle = new Cercle();
 
 //************************************************************************
@@ -86,16 +86,34 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 	bool radioRect = frame->GetControlPanel()->GetRadioRect() ;
 	bool radioCercle = frame->GetControlPanel()->GetRadioCercle() ;
 	
+<<<<<<< HEAD
 	//initialisation du wxPaintDC pour dessiner 
+=======
+	//initialisationGetWidth() du wxPaintDC pour dessiner
+>>>>>>> 3e3f8495eb01b88858d5d6583c67e56c87f9366e
 	wxPaintDC dc(this);
+
+	//Lecture de l'objet dessin pour ré afficher les formes déjà existantes
+	objDessin.Draw(&dc);
 	
 	//variable statiques communes à toutes instances objets 
 	static int x1, y1, x2, y2;
 
+<<<<<<< HEAD
 	//TEST D'INSTANTACIATION DES FORMES
 	dc.DrawRectangle(m_corner->GetX(), m_corner->GetY(), rectangle->GetWidth(),rectangle->GetHeight());
 	dc.DrawLine(line->GetLineP1().GetX(), line->GetLineP1().GetY(), line->GetLineP2().GetX(), line->GetLineP2().GetY());
 	dc.DrawCircle(cercle->GetCenter().GetX(), cercle->GetCenter().GetY(), cercle->GetRadius());
+=======
+	
+	//(const wxPoint &pt, const wxSize &sz)
+
+/*	
+	dc.DrawRectangle(m_corner->GetX(), m_corner->GetY(), rectangle->GetWidth(),rectangle->GetHeight());
+	dc.DrawLine(line->GetLineP1().GetX(), line->GetLineP1().GetY(), line->GetLineP2().GetX(), line->GetLineP2().GetY());
+	dc.DrawCircle(cercle->GetCenter().GetX(), cercle->GetCenter().GetY(), cercle->GetRadius());
+*/
+>>>>>>> 3e3f8495eb01b88858d5d6583c67e56c87f9366e
 
 	if(radioTrait)
 	{
@@ -116,9 +134,19 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 		{
 			x2 = m_onePoint.x;
 			y2 = m_onePoint.y;
+<<<<<<< HEAD
 			line->SetLineP1( x1, y1);
 			line->SetLineP2( x2, y2);
 			dc.DrawLine(x1, y1, x2, y2);
+=======
+
+			//dc.DrawLine(x1, y1, x2, y2);
+			//dc.DrawLine(x1, y1, x2, y2);
+
+			//Ajout de l'objet line dans le dessin
+			Line* tmpLine = new Line(x1, y1, x2, y2);
+			objDessin.AddForme(tmpLine);
+>>>>>>> 3e3f8495eb01b88858d5d6583c67e56c87f9366e
 
 			clickLeft = 0;
 			MouseMouve = 0;
@@ -131,8 +159,6 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 
 		if(clickLeft == 1)
 		{
-			m_corner->SetX(m_onePoint.x);
-    		m_corner->SetY(m_onePoint.y);
 			x1 = m_onePoint.x;
 			y1 = m_onePoint.y;
 		}
@@ -151,15 +177,20 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 		{
 			int largeur = 0;
 			int longueur = 0;
-			m_corner->SetX(x1);
-    		m_corner->SetY(y1);
+
 			int x2 = m_onePoint.x;
 			int y2 = m_onePoint.y;
+
 			largeur = x2 - x1;
 			longueur = y2 - y1;
-			rectangle->SetWidth(largeur);
-			rectangle->SetHeight(longueur);
-			dc.DrawRectangle(x1, y1, largeur, longueur);
+
+			
+			//dc.DrawRectangle(x1, y1, largeur, longueur);
+
+			//Ajout de l'objet rectangle dans le dessin
+			Rectangle* tmpRect = new Rectangle(x1, y1, largeur, longueur);
+			objDessin.AddForme(tmpRect);
+
 			clickLeft = 0;
 			MouseMouve = 0;
 		}
@@ -187,13 +218,17 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 		}
 		if(clickLeft == 2 )
 		{
-			int xF = m_onePoint.x;
-			int yF = m_onePoint.y;
-			Point* point = new Point(x1, y1);
-			cercle->SetCenter(*point);
-			int rayon = sqrt((xF-x1)*(xF-x1)+(yF-y1)*(yF-y1));
-			cercle->SetRadius(rayon);
+			int x2 = m_onePoint.x;
+			int y2 = m_onePoint.y;
+
+			int rayon = sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+
 			dc.DrawCircle(x1, y1, rayon);
+
+			//Ajout de l'objet line dans le dessin
+			Cercle* tmpCercle = new Cercle(x1, y1, rayon);
+			objDessin.AddForme(tmpCercle);
+
 			clickLeft = 0;
 			MouseMouve = 0;
 		}

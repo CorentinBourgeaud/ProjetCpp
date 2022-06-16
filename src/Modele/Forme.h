@@ -18,7 +18,7 @@ public:
 
     //Méthode d'affichage des infos et de dessin sur le drawpanel
     virtual void Display() const = 0 ;
-    virtual void Draw(wxClientDC* dc) const = 0;
+    virtual void Draw(wxPaintDC* dc) const = 0;
     /*virtual float Surface() const { return 0.0f; }
     virtual float Perimeter() const { return 0.0f; }*/
 
