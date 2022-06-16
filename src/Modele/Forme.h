@@ -8,20 +8,21 @@ class Forme
 {
 public:
     // Construction/Destruction
-    Forme();
-    Forme(const std::string& label);    // Avec une string
+    Forme() = default;
     Forme(const Forme& other);          // Construction par recopie
-    virtual ~Forme();
+    virtual ~Forme() = default;
 
     // Operator d'affectation
     Forme& operator=(const Forme& other);
 
+    //Méthode d'affichage des infos et de dessin sur le drawpanel
     virtual void Display() const = 0 ;
+    virtual void Draw() const = 0;
     /*virtual float Surface() const { return 0.0f; }
     virtual float Perimeter() const { return 0.0f; }*/
 
-protected:  // ou private
+//protected:
 
 };
 
-#endif // __FORME_H__
+#endif 

@@ -31,8 +31,9 @@ public:                                     // interface publique de la classe
     void Move(int dX, int dY);                  // d�place le rectangle
 
 
-    // Ici, on affiche la m�thode Diplay de Forme
+    
     virtual void Display() const;      // affiche les coordonn�es du rectangle
+    virtual void Draw() const;         //
 /*
     // On rajoute les autres m�thodes virtuelles
     virtual float Surface() const override;

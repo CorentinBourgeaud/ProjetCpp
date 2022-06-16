@@ -23,6 +23,7 @@ public:
     /*virtual float Surface() const override;
     virtual float Perimeter() const override;*/
     virtual void Display() const;
+    virtual void Draw() const;
 
 private:    // Could be protected
     Point m_center;

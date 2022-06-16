@@ -99,6 +99,11 @@ void Rectangle::Display() const
     // On affiche le nom
     cout << "Rectangle (" << m_corner.GetX() << "," << m_corner.GetY() << ") w=" << m_w << " h=" << m_h << ")" << endl;
 }
+
+void Rectangle::Draw() const
+{
+    
+}
 /*
 //-------------------------------------------
 void Rectangle::Move(int dX, int dY)
