@@ -7,9 +7,9 @@ using namespace std ;
 #include "MyDrawingPanel.hpp"
 #include "MyFrame.hpp"
 #include <math.h>
-#include "../Modele/Rectangle.h"
+
 #include "../Modele/Point.h"
-#include "../Modele/Line.hpp"
+#include "../View/includeform.hpp"
 
 //mettre 
 int clickLeft = 0;
@@ -18,7 +18,7 @@ int MouseMouve = 0;
 Point* m_corner = new Point();
 Rectangle* rectangle = new Rectangle();
 Line* line = new Line();
-
+Cercle* cercle = new Cercle();
 
 //************************************************************************
 //************************************************************************
@@ -95,8 +95,8 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 	//(const wxPoint &pt, const wxSize &sz)
 	
 	dc.DrawRectangle(m_corner->GetX(), m_corner->GetY(), rectangle->GetWidth(),rectangle->GetHeight());
-	//dc.DrawLine(120, 120, 250, 250);
 	dc.DrawLine(line->GetLineP1().GetX(), line->GetLineP1().GetY(), line->GetLineP2().GetX(), line->GetLineP2().GetY());
+	dc.DrawCircle(cercle->GetCenter().GetX(), cercle->GetCenter().GetY(), cercle->GetRadius());
 	if(radioTrait)
 	{
 		////////////////////////////////////	
@@ -154,6 +154,8 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 		{
 			int largeur = 0;
 			int longueur = 0;
+			m_corner->SetX(x1);
+    		m_corner->SetY(y1);
 			int x2 = m_onePoint.x;
 			int y2 = m_onePoint.y;
 			largeur = x2 - x1;
@@ -175,6 +177,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			
 			x1 = m_onePoint.x;
 			y1 = m_onePoint.y;
+			 
 		}
 		if (clickLeft == 1 && MouseMouve != 0)
 		{
@@ -189,7 +192,14 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 		{
 			int xF = m_onePoint.x;
 			int yF = m_onePoint.y;
+			Point* point = new Point(x1, y1);
+			//point->SetX(x1);
+			//point->SetY(y1);
+			cercle->SetCenter(*point);
+			
+			//cercle.m_center(other.m_center), m_radius(other.m_radius)
 			int rayon = sqrt((xF-x1)*(xF-x1)+(yF-y1)*(yF-y1));
+			cercle->SetRadius(rayon);
 			dc.DrawCircle(x1, y1, rayon);
 			clickLeft = 0;
 			MouseMouve = 0;

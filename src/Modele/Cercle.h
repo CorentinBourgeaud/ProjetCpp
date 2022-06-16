@@ -24,6 +24,13 @@ public:
     virtual float Perimeter() const override;*/
     virtual void Display() const;
     virtual void Draw() const;
+    //getters 
+    Point GetCenter();
+    int GetRadius();
+    //setters
+    void SetCenter(Point p);
+    void SetRadius(int radius);
+
 
 private:    // Could be protected
     Point m_center;
