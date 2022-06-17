@@ -9,6 +9,10 @@ using namespace std ;
 
 IMPLEMENT_APP(MyApp) // macro that contains the main() function
 
+/*
+méthode  permettant d'ouvrir l'application.
+La méthode appelle MyFrame
+*/
 //------------------------------------------------------------------------
 bool MyApp::OnInit()
 //------------------------------------------------------------------------

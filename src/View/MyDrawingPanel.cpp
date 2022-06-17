@@ -50,8 +50,8 @@ void MyDrawingPanel::OnMouseMove(wxMouseEvent &event)
 {
 	m_mousePoint.x = event.m_x ;
 	m_mousePoint.y = event.m_y ;
-	MouseMove = true;
-	Refresh() ;	// send an event that calls the OnPaint method
+	MouseMove = true; //quand la souris bouge, la variable passe à true pour signifier le mouvement. Elle sert pour OnPaint.
+	Refresh() ;	// refresh() appelle Onpaint à chaque action de la souris. 
 }
 
 //------------------------------------------------------------------------
@@ -62,7 +62,7 @@ void MyDrawingPanel::OnMouseLeftDown(wxMouseEvent &event)
 	m_onePoint.x = event.m_x ;
 	m_onePoint.y = event.m_y ;
 	clickLeft = clickLeft +1;
-	Refresh() ; // send an event that calls the OnPaint method
+	Refresh() ; // refresh() appelle Onpaint à chaque action de la souris.
 }
 
 //------------------GetWidth()------------------------------------------------------
@@ -94,7 +94,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			//récuperation du premier point
 			x1 = m_onePoint.x;
 			y1 = m_onePoint.y;
-			//dessin du trait temporaire
+			//dessin du trait temporaire //permet de dimensionner le dessin en temps réel
 			dc.DrawLine(x1, y1, m_mousePoint.x,m_mousePoint.y);
 		}
 		if(clickLeft == 2 )
@@ -121,7 +121,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			//récuperation du premier point
 			x1 = m_onePoint.x;
 			y1 = m_onePoint.y;
-			//dessin du rectangle temporaire
+			//dessin du rectangle temporaire //permet de dimensionner le dessin en temps réel
 			int xF = m_mousePoint.x;
 			int yF = m_mousePoint.y;
 
@@ -170,7 +170,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			int yF = m_mousePoint.y;
 			int rayon = sqrt((xF-x1)*(xF-x1)+(yF-y1)*(yF-y1));
 
-			//dessin du cercle temporaire
+			//dessin du cercle temporaire //permet de dimensionner le dessin en temps réel
 			dc.DrawCircle(x1, y1, rayon);
 			
 		}
@@ -220,6 +220,8 @@ void MyDrawingPanel::SaveFile(wxString fileName)
 	wxMessageBox(wxT("The file was saved")) ;	
 }
 
+
+//methode permettant de lier avec MyFrame
 //------------------------------------------------------------------------
 void MyDrawingPanel::OnCheckEtat(wxCommandEvent &event)
 //------------------------------------------------------------------------
