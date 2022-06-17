@@ -7,7 +7,7 @@ enum
 	ID_ABOUT,
 	ID_LOAD,
 	ID_SAVE,
-	ID_BUTTON1, //click
+	ID_RADIONAVIG, //permet de clicker sans créer de dessin 
 	ID_RADIOTRAIT, //trait
 	ID_RADIORECT, //rectangle
 	ID_RADIOCERCL, //cercle

@@ -11,6 +11,13 @@ using namespace std ;
 #include "../Modele/Point.h"
 #include "../View/includeform.hpp"
 
+/*
+MyDrawingPanel possède 4 ETATS :
+ETAT 0 : MyDrawingPanel ne dessine rien. Le click ne crée pas de dessins
+ETAT 1 : MyDrawingPanel est obligé de dessiner un trait. Le trait est crée par deux clicks(1er click = point départ  + 2e click = point d'arrivée)
+ETAT 2 : MyDrawingPanel est obligé de dessiner un rectangle. Le rectangle est crée par deux clicks(1er click = côté haut gauche  + 2e click = calcul largeur / longueur avec coordonnées point d'arrivée/départ)
+ETAT 3 : MyDrawingPanel est obligé de dessiner un cercle. Le cercle est crée par deux clicks(1er click = centre du cercle + 2e click = calcul du rayon avec coordonnées point d'arrivée/départ )
+*/
 
 //************************************************************************
 //************************************************************************
@@ -65,20 +72,10 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 // when the panel is resized
 // You have to call OnPaint with Refresh() when you need to update the panel content
 {
-	
-	
-	// permet de lire les valeurs dans le controleur 
-	
-	MyFrame* frame =  (MyFrame*)GetParent() ;
-	//int radius = frame->GetControlPanel()->GetSliderValue() ;
 
-	//on verifie l'éat des boutons radio pour adapter la methode draw lors de l'édition d'un nouveau dessin 
-	bool check = frame->GetControlPanel()->GetCheckBoxValue() ;
-	bool radioTrait = frame->GetControlPanel()->GetRadioTrait() ;
-	bool radioRect = frame->GetControlPanel()->GetRadioRect() ;
-	bool radioCercle = frame->GetControlPanel()->GetRadioCercle() ;
-	
-	//initialisationGetWidth() du wxPaintDC pour dessiner
+	MyFrame* frame =  (MyFrame*)GetParent() ;
+
+	//initialisation du wxPaintDC pour dessiner
 	wxPaintDC dc(this);
 
 	//Lecture de l'objet dessin pour ré afficher les formes déjà existantes
@@ -87,12 +84,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 	//variable statiques communes à toutes instances objets 
 	static int x1, y1, x2, y2;
 
-	if (etat == 1)
-		{
-			//printf("bonjour bonjour");
-		}
-
-	if(radioTrait)
+	if(etat == 1)
 	{
 		////////////////////////////////////	
 		//METHODE POUR DESSINER UN TRAIT
@@ -119,7 +111,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			clickLeft = 0;
 		}
 	}
-	else if(radioRect)
+	else if(etat == 2)
 	{
 		////////////////////////////////////	
 		//METHODE POUR DESSINER UN RECTANGLE
@@ -163,7 +155,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			clickLeft = 0;
 		}
 	}
-	else
+	else if (etat == 3)
 	{
 		////////////////////////////////////
 		//METHODE POUR DESSINER UN CERCLE
@@ -199,12 +191,10 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			clickLeft = 0;
 		}
 	}
-
-	/*
-	dc.DrawLine(m_mousePoint, m_onePoint) ;
-	dc.DrawRectangle(wxPoint(m_onePoint.x-radius/2, m_onePoint.y-radius/2), wxSize(radius,radius)) ;
-	dc.DrawCircle(wxPoint(m_mousePoint), radius/2) ;
-	*/
+	else 
+	{
+		clickLeft = 0;
+	}
 	
 }
 
