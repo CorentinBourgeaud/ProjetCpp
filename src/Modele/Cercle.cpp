@@ -86,7 +86,7 @@ void Cercle::Display() const
     cout << "Cercle = (" << m_center.GetX() << "," << m_center.GetY() << ") radius=" << m_radius << endl;
 }
 
-void Cercle::Draw(wxPaintDC* dc) const
+void Cercle::Draw(wxDC* dc) const
 {
     dc->DrawCircle(m_center.GetX(), m_center.GetY(), m_radius);
 }

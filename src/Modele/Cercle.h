@@ -24,7 +24,7 @@ public:
     /*virtual float Surface() const override;
     virtual float Perimeter() const override;*/
     virtual void Display() const;
-    virtual void Draw(wxPaintDC* dc) const;
+    virtual void Draw(wxDC* dc) const;
     //getters 
     Point GetCenter();
     int GetRadius();

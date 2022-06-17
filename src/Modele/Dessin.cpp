@@ -32,7 +32,7 @@ void Dessin::Display()
     }
 }
 
-void Dessin::Draw(wxPaintDC* dc)
+void Dessin::Draw(wxDC* dc)
 {
     //wxClientDC
     for(auto it = dessin.begin(); it != dessin.end(); it++)

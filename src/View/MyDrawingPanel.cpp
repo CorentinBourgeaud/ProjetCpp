@@ -15,10 +15,7 @@ using namespace std ;
 int clickLeft = 0;
 int MouseMouve = 0;
 
-Point* m_corner = new Point();
-Rectangle* rectangle = new Rectangle();
-//Line* line = new Line();
-Cercle* cercle = new Cercle();
+
 
 //************************************************************************
 //************************************************************************
@@ -86,11 +83,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 	bool radioRect = frame->GetControlPanel()->GetRadioRect() ;
 	bool radioCercle = frame->GetControlPanel()->GetRadioCercle() ;
 	
-<<<<<<< HEAD
-	//initialisation du wxPaintDC pour dessiner 
-=======
 	//initialisationGetWidth() du wxPaintDC pour dessiner
->>>>>>> 3e3f8495eb01b88858d5d6583c67e56c87f9366e
 	wxPaintDC dc(this);
 
 	//Lecture de l'objet dessin pour ré afficher les formes déjà existantes
@@ -99,12 +92,6 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 	//variable statiques communes à toutes instances objets 
 	static int x1, y1, x2, y2;
 
-<<<<<<< HEAD
-	//TEST D'INSTANTACIATION DES FORMES
-	dc.DrawRectangle(m_corner->GetX(), m_corner->GetY(), rectangle->GetWidth(),rectangle->GetHeight());
-	dc.DrawLine(line->GetLineP1().GetX(), line->GetLineP1().GetY(), line->GetLineP2().GetX(), line->GetLineP2().GetY());
-	dc.DrawCircle(cercle->GetCenter().GetX(), cercle->GetCenter().GetY(), cercle->GetRadius());
-=======
 	
 	//(const wxPoint &pt, const wxSize &sz)
 
@@ -113,7 +100,6 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 	dc.DrawLine(line->GetLineP1().GetX(), line->GetLineP1().GetY(), line->GetLineP2().GetX(), line->GetLineP2().GetY());
 	dc.DrawCircle(cercle->GetCenter().GetX(), cercle->GetCenter().GetY(), cercle->GetRadius());
 */
->>>>>>> 3e3f8495eb01b88858d5d6583c67e56c87f9366e
 
 	if(radioTrait)
 	{
@@ -134,11 +120,6 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 		{
 			x2 = m_onePoint.x;
 			y2 = m_onePoint.y;
-<<<<<<< HEAD
-			line->SetLineP1( x1, y1);
-			line->SetLineP2( x2, y2);
-			dc.DrawLine(x1, y1, x2, y2);
-=======
 
 			//dc.DrawLine(x1, y1, x2, y2);
 			//dc.DrawLine(x1, y1, x2, y2);
@@ -146,7 +127,6 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			//Ajout de l'objet line dans le dessin
 			Line* tmpLine = new Line(x1, y1, x2, y2);
 			objDessin.AddForme(tmpLine);
->>>>>>> 3e3f8495eb01b88858d5d6583c67e56c87f9366e
 
 			clickLeft = 0;
 			MouseMouve = 0;
@@ -232,6 +212,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			clickLeft = 0;
 			MouseMouve = 0;
 		}
+		
 
 	}
 

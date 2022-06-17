@@ -18,7 +18,7 @@ public:
     std::list<Forme*>& GetList();
     void AddForme(Forme* newforme);
     void Display();
-    void Draw(wxPaintDC* dc);
+    void Draw(wxDC* dc);
 
 private:
     std::list<Forme*> dessin;
