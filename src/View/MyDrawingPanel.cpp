@@ -11,11 +11,6 @@ using namespace std ;
 #include "../Modele/Point.h"
 #include "../View/includeform.hpp"
 
-//mettre 
-int clickLeft = 0;
-int MouseMouve = 0;
-
-
 
 //************************************************************************
 //************************************************************************
@@ -48,7 +43,7 @@ void MyDrawingPanel::OnMouseMove(wxMouseEvent &event)
 {
 	m_mousePoint.x = event.m_x ;
 	m_mousePoint.y = event.m_y ;
-	MouseMouve = MouseMouve + 1;
+	MouseMove = true;
 	Refresh() ;	// send an event that calls the OnPaint method
 }
 
@@ -77,7 +72,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 	MyFrame* frame =  (MyFrame*)GetParent() ;
 	//int radius = frame->GetControlPanel()->GetSliderValue() ;
 
-	//on verifie l'éat des boutons radio pour adapter la methode draw
+	//on verifie l'éat des boutons radio pour adapter la methode draw lors de l'édition d'un nouveau dessin 
 	bool check = frame->GetControlPanel()->GetCheckBoxValue() ;
 	bool radioTrait = frame->GetControlPanel()->GetRadioTrait() ;
 	bool radioRect = frame->GetControlPanel()->GetRadioRect() ;
@@ -92,64 +87,55 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 	//variable statiques communes à toutes instances objets 
 	static int x1, y1, x2, y2;
 
-	
-	//(const wxPoint &pt, const wxSize &sz)
-
-/*	
-	dc.DrawRectangle(m_corner->GetX(), m_corner->GetY(), rectangle->GetWidth(),rectangle->GetHeight());
-	dc.DrawLine(line->GetLineP1().GetX(), line->GetLineP1().GetY(), line->GetLineP2().GetX(), line->GetLineP2().GetY());
-	dc.DrawCircle(cercle->GetCenter().GetX(), cercle->GetCenter().GetY(), cercle->GetRadius());
-*/
 
 	if(radioTrait)
 	{
 		////////////////////////////////////	
 		//METHODE POUR DESSINER UN TRAIT
 		
-		if(clickLeft == 1)
+		if (clickLeft == 1 && MouseMove == true)
 		{
+			//récuperation du premier point
 			x1 = m_onePoint.x;
 			y1 = m_onePoint.y;
-			
-		}
-		if (clickLeft == 1 && MouseMouve != 0)
-		{
+			//dessin du trait temporaire
 			dc.DrawLine(x1, y1, m_mousePoint.x,m_mousePoint.y);
 		}
 		if(clickLeft == 2 )
 		{
 			x2 = m_onePoint.x;
 			y2 = m_onePoint.y;
+			//dessin du trait temporaire pour masquer le décalage de refresh()
+			dc.DrawLine(x1, y1, x2, y2);
 
-			//dc.DrawLine(x1, y1, x2, y2);
-			//dc.DrawLine(x1, y1, x2, y2);
-
-			//Ajout de l'objet line dans le dessin
+			//Ajout de l'objet Line dans le dessin
 			Line* tmpLine = new Line(x1, y1, x2, y2);
 			objDessin.AddForme(tmpLine);
-
+			//réinitialisation de clickLeft et MouseMove à la fin du dessin de la figure
 			clickLeft = 0;
-			MouseMouve = 0;
+			MouseMove = false;
 		}
 	}
 	else if(radioRect)
 	{
 		////////////////////////////////////	
 		//METHODE POUR DESSINER UN RECTANGLE
-
-		if(clickLeft == 1)
+	
+		if (clickLeft == 1 && MouseMove == true)
 		{
+			//récuperation du premier point
 			x1 = m_onePoint.x;
 			y1 = m_onePoint.y;
-		}
-		if (clickLeft == 1 && MouseMouve != 0)
-		{
-			int largeur;
-			int longueur;
+			//dessin du rectangle temporaire
 			int xF = m_mousePoint.x;
 			int yF = m_mousePoint.y;
+
+			int largeur;
+			int longueur;
+
 			largeur = xF - x1;
 			longueur = yF-y1;
+
 			dc.DrawRectangle(x1, y1, largeur, longueur);
 			
 		}
@@ -164,15 +150,15 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			largeur = x2 - x1;
 			longueur = y2 - y1;
 
-			
-			//dc.DrawRectangle(x1, y1, largeur, longueur);
+			//dessin du rectangle temporaire pour masquer le décalage de refresh()
+			dc.DrawRectangle(x1, y1, largeur, longueur);
 
-			//Ajout de l'objet rectangle dans le dessin
+			//Ajout de l'objet Rectangle dans le dessin
 			Rectangle* tmpRect = new Rectangle(x1, y1, largeur, longueur);
 			objDessin.AddForme(tmpRect);
-
+			//réinitialisation de clickLeft et MouseMove à la fin du dessin de la figure
 			clickLeft = 0;
-			MouseMouve = 0;
+			MouseMove = false;
 		}
 	}
 	else
@@ -180,19 +166,17 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 		////////////////////////////////////
 		//METHODE POUR DESSINER UN CERCLE
 	
-		if(clickLeft == 1)
+		if (clickLeft == 1 && MouseMove == true)
 		{
-			
+			//récuperation du premier point
 			x1 = m_onePoint.x;
 			y1 = m_onePoint.y;
-			 
-		}
-		if (clickLeft == 1 && MouseMouve != 0)
-		{
-			
+
 			int xF = m_mousePoint.x;
 			int yF = m_mousePoint.y;
 			int rayon = sqrt((xF-x1)*(xF-x1)+(yF-y1)*(yF-y1));
+
+			//dessin du cercle temporaire
 			dc.DrawCircle(x1, y1, rayon);
 			
 		}
@@ -202,18 +186,17 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			int y2 = m_onePoint.y;
 
 			int rayon = sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-
+			//dessin du rectangle temporaire pour masquer le décalage de refresh()
 			dc.DrawCircle(x1, y1, rayon);
 
-			//Ajout de l'objet line dans le dessin
+			//Ajout de l'objet Cercle dans le dessin
 			Cercle* tmpCercle = new Cercle(x1, y1, rayon);
 			objDessin.AddForme(tmpCercle);
 
+			//réinitialisation de clickLeft et MouseMove à la fin du dessin de la figure
 			clickLeft = 0;
-			MouseMouve = 0;
+			MouseMove = false;
 		}
-		
-
 	}
 
 	/*
