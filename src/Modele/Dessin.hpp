@@ -20,6 +20,8 @@ public:
     void Display();
     void Draw(wxDC* dc);
 
+    void saveImage(wxString filename, int height, int width);
+
 private:
     std::list<Forme*> dessin;
 };

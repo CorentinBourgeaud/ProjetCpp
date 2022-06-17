@@ -225,17 +225,9 @@ void MyDrawingPanel::OpenFile(wxString fileName)
 void MyDrawingPanel::SaveFile(wxString fileName)
 //------------------------------------------------------------------------
 {
-	// just to create a tiny file
-	FILE* f = fopen(fileName, "w") ;
-	if (!f)
-		wxMessageBox(wxT("Cannot save file"));
-	else
-	{
-		fprintf(f, "S1102 software can create and write a file") ;
-		wxMessageBox(wxT("The file was saved")) ;
-		
-		fclose(f) ;
-	}
+	objDessin.saveImage(fileName,APPLICATION_HEIGHT,APPLICATION_WIDTH);
+
+	wxMessageBox(wxT("The file was saved")) ;	
 }
 
 //------------------------------------------------------------------------

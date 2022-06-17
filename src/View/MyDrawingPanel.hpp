@@ -28,8 +28,11 @@ private:
 	int clickLeft = 0;
 	// variable MouseMouve passe à true quand curseur de souris bouge
 	bool MouseMove = false;
-	Dessin objDessin;
+
 	int etat = 0;
+
+	Dessin objDessin;
+
 };
 
 #endif

@@ -40,3 +40,17 @@ void Dessin::Draw(wxDC* dc)
         (*it)->Draw(dc);
     }
 }
+
+void Dessin::saveImage(wxString fileName, int height, int width)
+{
+
+    wxSVGFileDC dcFile(fileName, width, height);
+    dcFile.SetBrush(*wxWHITE_BRUSH);
+    dcFile.DrawRectangle(0, 0, width, height);
+
+    for(auto it = dessin.begin(); it != dessin.end(); it++)
+    {
+        (*it)->Draw(&dcFile);
+    }
+
+}
