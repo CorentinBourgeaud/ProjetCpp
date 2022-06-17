@@ -41,7 +41,17 @@ MyControlPanel::MyControlPanel(wxWindow *parent) : wxPanel(parent)
 	Bind(wxEVT_RADIOBUTTON, &MyControlPanel::GetRadioB, this, ID_RADIOCERCL);
 
 }
-
+/*
+méthode vérifiant tous les radiobuttons. 
+Ne pouvant qu'avoir un seul bouton sur "true" la méthode vérifie 
+et sélectionne l'état dans lequel doit être MyDrawingPanel
+RAPPEL:
+ETAT 0 = NAVIGATION
+ETAT 1 = TRAIT
+ETA 2 = RECTANGLE 
+ETAT 3 = CERCLE 
+la methode modifie l'attribut etat dans MyDrawingPanel.
+*/
 //------------------------------------------------------------------------
 void MyControlPanel::GetRadioB(wxCommandEvent &event)
 //------------------------------------------------------------------------
