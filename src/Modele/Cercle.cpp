@@ -5,7 +5,7 @@
 #define _USE_MATH_DEFINES   // To include PI value
 #include <math.h>
 
-using namespace std;    // jamais dans un .h(pp) !
+using namespace std;
 
 // Constructeur riche. On appelle une version sp�cifique du construceur
 // de Forme et on initilise le centre et le radius de m�me
@@ -13,21 +13,7 @@ Cercle::Cercle(Point centre, int radius) :
     m_center(centre),
     m_radius(radius)
 {}
-/* Alternative
-Cercle::Cercle(Point centre, int radius, string label)
-{
-    m_center = centre;
-    m_radius = radius;
-    m_label = label;
-    cout << "Cercle (riche)" << endl;
-    SetLabel(label);
-    m_circleCount++;
-}
-*/
 
-
-// constructeur par d�faut, le constructeur par d�faut de
-// Forme est automatiquement appel�
 Cercle::Cercle()
 {}
 
@@ -65,27 +51,13 @@ Cercle &Cercle::operator=(const Cercle &other)
     return *this;
 }
 
-
-
-/*
-// Calcul de Surface en utilisant M_PI de #include <math.h>
-float Cercle::Surface() const
-{
-    return m_radius * m_radius * (float)M_PI;
-}
-
-// Calcul de p�rim�tre
-float Cercle::Perimeter() const
-{
-    return m_radius * (float)M_PI * 2.f;
-}
-*/
-// virtual void Cercle::Display() const override
+//Méthode d'affichage, utiliser pour le debugage
 void Cercle::Display() const
 {
     cout << "Cercle = (" << m_center.GetX() << "," << m_center.GetY() << ") radius=" << m_radius << endl;
 }
 
+//Méthode de dessin de la forme via une méthode wx
 void Cercle::Draw(wxDC* dc) const
 {
     dc->DrawCircle(m_center.GetX(), m_center.GetY(), m_radius);

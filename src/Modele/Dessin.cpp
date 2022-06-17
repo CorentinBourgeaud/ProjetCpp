@@ -19,11 +19,13 @@ list<Forme*>& Dessin::GetList()
     return dessin;
 }
 
+//Ajout d'une forme à la liste
 void Dessin::AddForme(Forme* newforme)
 {
     dessin.push_back(newforme);
 }
 
+//Affche tout les élémentes de la liste
 void Dessin::Display()
 {
     for(auto it = dessin.begin(); it != dessin.end(); it++)
@@ -32,6 +34,7 @@ void Dessin::Display()
     }
 }
 
+//Dessine tout les élémentes de la liste
 void Dessin::Draw(wxDC* dc)
 {
     //wxClientDC
@@ -41,6 +44,7 @@ void Dessin::Draw(wxDC* dc)
     }
 }
 
+//Permet la sauvgarde du dessin dans un fichier svg
 void Dessin::saveImage(wxString fileName, int height, int width)
 {
 

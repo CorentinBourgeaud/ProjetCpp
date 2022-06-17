@@ -8,21 +8,16 @@
 class Cercle : public Forme
 {
 public:
-    // Construction par d�faut, par copie, avec param�tres
     Cercle();
     Cercle(const Cercle &other);
     Cercle(int x1, int y1, int radius);
     Cercle(Point centre, int radius);
 
-    // Destructeur virtuel car on peut d�river cette classe
     ~Cercle() = default;
 
     // Op�rateur d'affectation
     Cercle &operator=(const Cercle &other);
 
-    // M�thodes virtuelles pour surcharger celles de la classe M�re
-    /*virtual float Surface() const override;
-    virtual float Perimeter() const override;*/
     virtual void Display() const;
     virtual void Draw(wxDC* dc) const;
     //getters 
@@ -33,7 +28,7 @@ public:
     void SetRadius(int radius);
 
 
-private:    // Could be protected
+private:
     Point m_center;
     int m_radius;
 };
