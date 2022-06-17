@@ -57,11 +57,17 @@ MyControlPanel::MyControlPanel(wxWindow *parent) : wxPanel(parent)
 void MyControlPanel::GetRadioB(wxCommandEvent &event)
 //------------------------------------------------------------------------
 {
-
 	MyFrame* frame = (MyFrame*)GetParent() ;
-	frame->RefreshDrawing() ;	// update the drawing panel
+	//frame->RefreshDrawing() ;
+	
+	frame->GetDrawingPanel()->SetEtat(1) ;
+	
+	// update the drawing panel
+	//MyFrame* frame = (MyFrame*)GetParent() ;
+	//frame->RefreshDrawing() ;	
 	
 }
+
 
 
 void MyControlPanel::OnButton(wxCommandEvent &event)

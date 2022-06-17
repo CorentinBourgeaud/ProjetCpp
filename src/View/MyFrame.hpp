@@ -13,6 +13,7 @@ class MyFrame: public wxFrame
 public:
 	MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size);
 	MyControlPanel* GetControlPanel(){return m_controlPanel ;} ;
+	MyDrawingPanel* GetDrawingPanel(){return m_drawingPanel ;} ;
 	void RefreshDrawing(){m_drawingPanel->Refresh() ;} ;
 
 protected:

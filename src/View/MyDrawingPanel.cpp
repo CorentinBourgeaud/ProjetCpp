@@ -87,13 +87,17 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 	//variable statiques communes à toutes instances objets 
 	static int x1, y1, x2, y2;
 
+	if (etat == 1)
+		{
+			printf("bonjour bonjour");
+		}
 
 	if(radioTrait)
 	{
 		////////////////////////////////////	
 		//METHODE POUR DESSINER UN TRAIT
 		
-		if (clickLeft == 1 && MouseMove == true)
+		if (clickLeft == 1)
 		{
 			//récuperation du premier point
 			x1 = m_onePoint.x;
@@ -113,15 +117,14 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			objDessin.AddForme(tmpLine);
 			//réinitialisation de clickLeft et MouseMove à la fin du dessin de la figure
 			clickLeft = 0;
-			MouseMove = false;
 		}
 	}
 	else if(radioRect)
 	{
 		////////////////////////////////////	
 		//METHODE POUR DESSINER UN RECTANGLE
-	
-		if (clickLeft == 1 && MouseMove == true)
+		
+		if (clickLeft == 1)
 		{
 			//récuperation du premier point
 			x1 = m_onePoint.x;
@@ -158,7 +161,6 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 			objDessin.AddForme(tmpRect);
 			//réinitialisation de clickLeft et MouseMove à la fin du dessin de la figure
 			clickLeft = 0;
-			MouseMove = false;
 		}
 	}
 	else
@@ -166,7 +168,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 		////////////////////////////////////
 		//METHODE POUR DESSINER UN CERCLE
 	
-		if (clickLeft == 1 && MouseMove == true)
+		if (clickLeft == 1)
 		{
 			//récuperation du premier point
 			x1 = m_onePoint.x;
@@ -195,7 +197,6 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 
 			//réinitialisation de clickLeft et MouseMove à la fin du dessin de la figure
 			clickLeft = 0;
-			MouseMove = false;
 		}
 	}
 
@@ -232,6 +233,16 @@ void MyDrawingPanel::SaveFile(wxString fileName)
 	{
 		fprintf(f, "S1102 software can create and write a file") ;
 		wxMessageBox(wxT("The file was saved")) ;
+		
 		fclose(f) ;
 	}
 }
+
+//------------------------------------------------------------------------
+void MyDrawingPanel::OnCheckEtat(wxCommandEvent &event)
+//------------------------------------------------------------------------
+{
+	MyFrame* frame = (MyFrame*)GetParent() ;
+	frame->RefreshDrawing() ;	// update the drawing panel
+}
+
