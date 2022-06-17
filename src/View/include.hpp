@@ -8,3 +8,5 @@
 #include <wx/image.h>
 #include <wx/file.h>
 #include <wx/bitmap.h>
+#include <wx/dcsvg.h>
+#include <wx/brush.h>
