@@ -30,7 +30,7 @@ private:
 	bool MouseMove = false;
 	//etat de MyDrawingPanel qui l'oblige à dessiner la forme ordonné par MyControlPanel
 	int etat = 0;
-	//objet Dessin qui stocke les formes et permet de redessiner les formes déjà implémentées
+	//objet Dessin qui stocke les formes et permet de redessiner les formes déjà implémentéesà chaque appel de OnPaint
 	Dessin objDessin;
 
 };
