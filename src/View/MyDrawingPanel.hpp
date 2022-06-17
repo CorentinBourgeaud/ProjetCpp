@@ -23,6 +23,10 @@ private:
 	wxPoint m_mousePoint ;
 	wxPoint m_onePoint ;
 	
+	//variable clickLeft est incrémenter si click gauche de la souris
+	int clickLeft = 0;
+	// variable MouseMouve passe à true quand  curseur de souris bouge
+	bool MouseMove = false;
 	Dessin objDessin;
 };
 
