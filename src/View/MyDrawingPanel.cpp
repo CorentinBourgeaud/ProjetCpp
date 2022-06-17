@@ -89,7 +89,7 @@ void MyDrawingPanel::OnPaint(wxPaintEvent &event)
 
 	if (etat == 1)
 		{
-			printf("bonjour bonjour");
+			//printf("bonjour bonjour");
 		}
 
 	if(radioTrait)
