@@ -52,29 +52,11 @@ MyControlPanel::MyControlPanel(wxWindow *parent) : wxPanel(parent)
 	Bind(wxEVT_CHECKBOX, &MyControlPanel::OnCheckBox, this, ID_CHECKBOX1) ;
 
 }
-//A ENLEVER AVANT ENVOI DU DOSSIER AU PROF!!!
+
 //------------------------------------------------------------------------
 void MyControlPanel::GetRadioB(wxCommandEvent &event)
 //------------------------------------------------------------------------
 {
-	int radioValue= 0;
-	
-	if(m_radioTrait->GetValue())
-	{
-		wxMessageBox(wxT("méthode pour les traits")) ;
-		
-
-	}
-	else if(m_radioRectangle->GetValue())
-	{
-		wxMessageBox(wxT("méthode pour les rectangles")) ;
-		
-	}
-	else
-	{
-		wxMessageBox(wxT("méthode pour les cercles")) ;
-		
-	}
 
 	MyFrame* frame = (MyFrame*)GetParent() ;
 	frame->RefreshDrawing() ;	// update the drawing panel
