@@ -8,16 +8,16 @@
 class Line : public Forme
 {
 public:
-// Construction par d�faut, par copie, avec param�tres
+// Construction par défaut, par copie, avec paramètres
     Line() = default;
     Line(const Line &other);
     Line(int x1, int y1, int x2, int y2);
     Line(Point p1, Point p2);
 
-    // Destructeur virtuel car on peut d�river cette classe
+    // Destructeur virtuel car on peut dériver cette classe
     ~Line() = default;
 
-    // Op�rateur d'affectation
+    // Opérateur d'affectation
     Line &operator=(const Line &other);
     
     //getter 
@@ -27,9 +27,7 @@ public:
     void SetLineP1(int x1, int y1); //inverser x1 x2 ?
     void SetLineP2(int x2, int y2);
 
-    // M�thodes virtuelles pour surcharger celles de la classe M�re
-    /*virtual float Surface() const override;
-    virtual float Perimeter() const override;*/
+    // Méthodes virtuelles pour surcharger celles de la classe Mère
     virtual void Display() const;
     virtual void Draw(wxDC* dc) const;
 

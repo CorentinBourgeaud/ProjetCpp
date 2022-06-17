@@ -5,11 +5,11 @@
 class Point
 //-------------------------------------------
 {
-public:                        // interface publique de la classe
-    Point();                   // constructeur par d�faut
+public:
+    Point();                   // constructeur par défaut
     Point(int x, int y);       // constructeur
     Point(int z);              // constructeur (x = y)
-    ~Point() = default;                  // destructeur
+    ~Point() = default;        // destructeur
     void Move(int dX, int dY); // bouge le point
 
     // Setters
@@ -20,15 +20,14 @@ public:                        // interface publique de la classe
     int GetX() const;
     int GetY() const;
 
-    // M�thodes const (qui ne modifie pas l'objet)
-    void Display() const;      // affiche les coordonn�es du point
+    void Display() const;      // affiche les coordonnées du point
     bool XEgalY() const;
     float Distance(const Point &p) const;
     float Distance(const Point *p) const;
 
-private:                        // invisible � l?utilisateur de la classe
-    int m_x;                    // les coordonn�es
-    int m_y;                    // du point
+private:
+    int m_x;                    
+    int m_y;                    
 };
 
-#endif // __POINT_H__ : retour � la ligne obligatoire pour certains compilateurs
+#endif

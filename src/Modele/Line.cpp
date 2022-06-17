@@ -36,11 +36,13 @@ Line &Line::operator=(const Line &other)
     return *this;
 }
 
+//Méthode d'affichage, utiliser pour le debugage
 void Line::Display() const
 {
     cout << "Line = (" << m_p1.GetX() << "," << m_p1.GetY() << ") , (" << m_p2.GetX() << "," << m_p2.GetY() << ")" << endl;
 }
 
+//Méthode de dessin de la forme via une méthode wx
 void Line::Draw(wxDC* dc) const
 {
     dc->DrawLine(m_p1.GetX(), m_p1.GetY(), m_p2.GetX(), m_p2.GetY());

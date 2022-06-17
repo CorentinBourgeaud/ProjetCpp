@@ -81,22 +81,12 @@ void Point::SetY(int y)
 //-------------------------------------------
 float Point::Distance(const Point *p) const
 //-------------------------------------------
-// th�or�me de pythagore :
-// dans un triangle rectangle, le carr� de la longueur de l'hypot�nuse
-// est �gal � la somme des carr�s des longueurs des deux autres c^ot�s
 {
     return sqrt((m_x - p->m_x) * (m_x - p->m_x) + (m_y - p->m_y) * (m_y - p->m_y));
 }
 
 //-------------------------------------------
 float Point::Distance(const Point &p) const
-// identique � float Point::Distance(Point p)
-// remarque : on ne peut pas en plus surcharger avec la m�thode
-// float Point::Distance(Point p)
-// car il y aurait ambiguit� au niveau de l?appel :
-// dans les 2 cas, le param`etre pass� serait de type Point,
-// ce qui ne permet pas au compilateur (ni � l(^etre humain)
-// de savoir quelle version de la m�thode appeler.
 //-------------------------------------------
 {
     return sqrt((m_x - p.m_x) * (m_x - p.m_x) + (m_y - p.m_y) * (m_y - p.m_y));
